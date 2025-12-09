@@ -1,0 +1,184 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getSiteName, getKeyword, getDomain, getSiteURL } from '../lib/site-config';
+
+const title = 'Free Government Phone - Apply in 2 Minutes | QuickPhone Pro';
+const description = 'Apply for your Free Government Phone today. Quick 2-minute application process with instant approval. Get free phone service, unlimited talk, text, and data. No credit check required.';
+const canonicalURL = new URL('/apply', getSiteURL());
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Free Government Phone - Apply in 2 Minutes",
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": getSiteName()
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": getSiteName()
+  },
+  "datePublished": "2025-12-09",
+  "dateModified": "2025-12-09",
+  "url": canonicalURL.href,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalURL.href
+  }
+};
+
+const faqData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How fast can I get my Free Government Phone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most applications are processed within 24-48 hours. Once approved, your phone ships within 7-10 business days with free shipping directly to your door."
+      }
+    },
+    {
+      "@type": "Question", 
+      "name": "What documents do I need to apply?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You'll need proof of eligibility (like Medicaid, SNAP, or WIC card) and a valid ID. Income-based qualification requires recent pay stubs or benefit statements."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there really no cost for the phone and service?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, both the phone and monthly service are completely free. You get unlimited talk, text, and data at no charge through the Lifeline program."
+      }
+    }
+  ]
+};
+---
+
+<Layout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(faqData)}></script>
+
+  <nav class="bg-white py-4 border-b">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center text-sm text-gray-600">
+        <a href="/" class="text-[var(--color-primary)] hover:underline">Home</a>
+        <span class="mx-2">›</span>
+        <span class="font-medium">Apply Now</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="min-h-screen bg-gray-50">
+    <section class="bg-gradient-to-br from-blue-50 to-purple-50 py-16">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          Free Government Phone
+        </h1>
+        <p class="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
+          Complete your application in just 2 minutes and get approved instantly. No credit check, no hidden fees, absolutely free.
+        </p>
+        <a href="#eligibility-checker" class="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-gray-900 font-bold py-3 px-6 rounded-xl shadow-lg inline-block">
+          Start Your Application
+        </a>
+      </div>
+    </section>
+
+    <section id="eligibility-checker" class="py-16">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Check Your Eligibility Instantly</h2>
+        
+        <div class="bg-white rounded-xl shadow-lg p-8">
+          <p class="text-lg text-gray-700 mb-6">
+            Getting your Free Government Phone starts with a quick eligibility check. QuickPhone Pro makes this process simple and fast, so you know within minutes if you qualify.
+          </p>
+          
+          <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4" style="color: var(--color-primary)">Income-Based Eligibility</h3>
+              <ul class="space-y-3 text-gray-700">
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-3">✓</span>
+                  <span>Household income at or below 135% of Federal Poverty Guidelines</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-3">✓</span>
+                  <span>Recent pay stubs or tax documents as proof</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-3">✓</span>
+                  <span>Single person: $21,870 annual income or less</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4" style="color: var(--color-primary)">Program-Based Eligibility</h3>
+              <ul class="space-y-3 text-gray-700">
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-3">✓</span>
+                  <span>Medicaid or Medicare recipients</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-3">✓</span>
+                  <span>SNAP (Food Stamps) participants</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-3">✓</span>
+                  <span>WIC, TANF, or SSI beneficiaries</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="text-center">
+            <button class="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-gray-900 font-bold py-3 px-6 rounded-xl shadow-lg">
+              Check Eligibility Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="application-steps" class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Simple 3-Step Application Process</h2>
+        
+        <div class="space-y-8">
+          <div class="flex items-start space-x-6">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl" style="background-color: var(--color-primary)">
+              1
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-3">Complete Basic Information</h3>
+              <p class="text-gray-700">
+                Fill out your personal details including name, address, and contact information. This takes about 30 seconds and helps us verify your identity for your Free Government Phone application.
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-6">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl" style="background-color: var(--color-primary)">
+              2
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-3">Upload Eligibility Documents</h3>
+              <p class="text-gray-700">
+                Take photos of your eligibility proof using your phone or computer. Upload your benefit card, income statement, or qualifying program documentation. Our system instantly verifies your documents.
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-6">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl" style="background-color: var(--color-primary)">
+              3
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-3">Get Instant Approval</h3>
+              <p class="text-gray-700">
+                Receive immediate approval notification and choose your free smartphone. Your Free Government Phone ships within 7-10 business days with activated service ready to use right out of the box.

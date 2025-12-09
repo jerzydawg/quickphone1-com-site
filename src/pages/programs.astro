@@ -1,0 +1,200 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getSiteName, getKeyword, getDomain, getSiteURL } from '../lib/site-config';
+
+const siteName = getSiteName();
+const keyword = getKeyword();
+const domain = getDomain();
+const siteURL = getSiteURL();
+
+const title = "Free Government Phone - All Free Phone Programs | QuickPhone Pro";
+const description = "Discover all free government phone programs available in 2025. Get your Free Government Phone through Lifeline, ACP, and state programs with QuickPhone Pro.";
+const canonicalURL = `${siteURL}/programs`;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Free Government Phone - All Free Phone Programs",
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": siteName
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": siteName,
+    "url": siteURL
+  },
+  "datePublished": "2025-12-09",
+  "dateModified": "2025-12-09",
+  "url": canonicalURL,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalURL
+  }
+};
+---
+
+<Layout title={title} description={description} canonicalURL={canonicalURL}>
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+  
+  <main class="min-h-screen">
+    <!-- Breadcrumb Navigation -->
+    <nav class="bg-gray-50 py-4">
+      <div class="max-w-6xl mx-auto px-4">
+        <ol class="flex items-center space-x-2 text-sm">
+          <li>
+            <a href="/" class="text-[var(--color-primary)] hover:underline">Home</a>
+          </li>
+          <li class="text-gray-400">/</li>
+          <li class="text-gray-600">Programs</li>
+        </ol>
+      </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <!-- Hero Section -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">{keyword}</h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Compare all available free phone programs and find the one that works best for your situation in 2025.
+        </p>
+        <div class="mt-8">
+          <a href="/apply" class="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-gray-900 font-bold py-3 px-6 rounded-xl shadow-lg">
+            Get Your Free Phone Now
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+          <!-- Intro Section -->
+          <section id="intro" class="mb-12">
+            <p class="text-lg text-gray-700 mb-6">
+              Getting a Free Government Phone has never been easier with multiple programs available across the United States. 
+              Whether you need basic talk and text or high-speed data for work and education, various federal and state programs 
+              provide free wireless service to eligible households.
+            </p>
+            
+            <p class="text-gray-700 mb-6">
+              QuickPhone Pro helps you navigate these programs to find exactly what you need. From the nationwide Lifeline program 
+              to state-specific options, we'll show you every way to get connected without paying monthly bills. Each program 
+              has different benefits, eligibility requirements, and application processes.
+            </p>
+
+            <p class="text-gray-700 mb-8">
+              Most Free Government Phone programs require proof of participation in assistance programs like SNAP, Medicaid, 
+              or SSI. Some programs also qualify based on household income levels. The good news is that if you qualify for 
+              one program, you likely qualify for others, giving you options to choose the best service.
+            </p>
+          </section>
+
+          <!-- Federal Programs -->
+          <section id="federal-programs" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6" style="color: var(--color-primary)">Federal Free Phone Programs</h2>
+            
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+              <h3 class="text-xl font-semibold mb-4">Lifeline Program</h3>
+              <p class="text-gray-700 mb-4">
+                The original Free Government Phone program that provides monthly discounts on phone service. 
+                Lifeline offers either a free basic phone with limited minutes and texts, or a discount on 
+                your existing phone plan.
+              </p>
+              <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                <li>Free smartphone with talk, text, and data</li>
+                <li>Available in all 50 states</li>
+                <li>One benefit per household</li>
+                <li>Works with major carriers</li>
+              </ul>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-6">
+              <h3 class="text-xl font-semibold mb-4">Affordable Connectivity Program (ACP)</h3>
+              <p class="text-gray-700 mb-4">
+                The newer program that focuses on high-speed internet access. ACP provides larger data allowances 
+                and can be combined with Lifeline benefits for maximum savings on your wireless service.
+              </p>
+              <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                <li>Up to $30/month discount on service</li>
+                <li>Free or discounted device available</li>
+                <li>Higher data allowances than Lifeline</li>
+                <li>Can combine with other programs</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- State Programs -->
+          <section id="state-programs" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6" style="color: var(--color-primary)">State-Specific Programs</h2>
+            
+            <p class="text-gray-700 mb-6">
+              Many states supplement federal programs with additional benefits for residents. These state programs 
+              often provide extra data, better phones, or expanded eligibility requirements beyond federal guidelines.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-gray-50 rounded-lg p-6">
+                <h3 class="font-semibold mb-3">California LifeLine</h3>
+                <p class="text-gray-700">
+                  Enhanced benefits for California residents including additional monthly minutes and data allowances.
+                </p>
+              </div>
+              
+              <div class="bg-gray-50 rounded-lg p-6">
+                <h3 class="font-semibold mb-3">Texas Lifeline</h3>
+                <p class="text-gray-700">
+                  State-specific program with expanded eligibility and partnership with local carriers.
+                </p>
+              </div>
+              
+              <div class="bg-gray-50 rounded-lg p-6">
+                <h3 class="font-semibold mb-3">Florida Lifeline</h3>
+                <p class="text-gray-700">
+                  Additional state benefits for eligible households with streamlined application process.
+                </p>
+              </div>
+              
+              <div class="bg-gray-50 rounded-lg p-6">
+                <h3 class="font-semibold mb-3">New York Lifeline</h3>
+                <p class="text-gray-700">
+                  Enhanced program with better phone options and increased monthly allowances.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Special Programs -->
+          <section id="special-programs" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6" style="color: var(--color-primary)">Special Assistance Programs</h2>
+            
+            <div class="space-y-6">
+              <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-semibold mb-4">Tribal Lifeline</h3>
+                <p class="text-gray-700 mb-4">
+                  Enhanced benefits for residents of federally recognized tribal lands. This program provides 
+                  additional monthly discounts beyond standard Lifeline benefits.
+                </p>
+                <ul class="list-disc pl-6 text-gray-700 space-y-1">
+                  <li>Up to $75/month discount on service</li>
+                  <li>Available on tribal lands nationwide</li>
+                  <li>Enhanced eligibility requirements</li>
+                </ul>
+              </div>
+
+              <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-semibold mb-4">Emergency Broadband Benefit</h3>
+                <p class="text-gray-700 mb-4">
+                  Special programs activated during emergencies to ensure communication access during disasters 
+                  or public health emergencies.
+                </p>
+                <ul class="list-disc pl-6 text-gray-700 space-y-1">
+                  <li>Activated during declared emergencies</li>
+                  <li>Expanded eligibility during crisis periods</li>
+                  <li>Additional benefits for affected areas</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!--

@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getSiteName, getKeyword, getDomain, getSiteURL } from '../lib/site-config';
+
+const siteName = getSiteName();
+const keyword = getKeyword();
+const domain = getDomain();
+const siteURL = getSiteURL();
+
+const title = `${keyword} - Free Internet Program | ${siteName}`;
+const description = "Learn about the Emergency Broadband Benefit transition to ACP and discover current free internet options. Get your free government phone with internet service today.";
+const canonicalURL = `${siteURL}/emergency-broadband`;
+
+const jsonLD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Free Government Phone - Emergency Broadband Program Guide",
+      "description": description,
+      "author": {
+        "@type": "Organization",
+        "name": siteName
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": siteName,
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${siteURL}/logo.png`
+        }
+      },
+      "datePublished": "2025-12-09",
+      "dateModified": "2025-12-09",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": canonicalURL
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What happened to the Emergency Broadband Benefit program?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Emergency Broadband Benefit ended in December 2021 and was replaced by the Affordable Connectivity Program, which provides up to $30 monthly for internet service and device discounts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I still get free internet through government programs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, the Affordable Connectivity Program provides internet discounts, and Lifeline offers free phone service with data. Many providers combine these benefits with free government phones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I apply for current free internet programs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can apply online through the National Verifier, contact participating providers directly, or visit community centers that help with applications. Most applications require proof of income or program participation."
+          }
+        }
+      ]
+    }
+  ]
+};
+---
+
+<Layout title={title} description={description} canonical={canonicalURL}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLD)}></script>
+  
+  <div class="min-h-screen bg-gray-50">
+    <!-- Breadcrumb Navigation -->
+    <nav class="bg-white shadow-sm" aria-label="Breadcrumb">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+        <ol class="flex space-x-2 text-sm">
+          <li><a href="/" class="text-[var(--color-primary)] hover:underline">Home</a></li>
+          <li class="text-gray-400">›</li>
+          <li class="text-gray-600">Emergency Broadband Program</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-white shadow-sm">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">{keyword}</h1>
+        <p class="text-xl text-gray-600 mb-6">Understanding the Emergency Broadband Benefit transition and current free internet options available through government assistance programs.</p>
+        <a href="/apply" class="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-gray-900 font-bold py-3 px-6 rounded-xl shadow-lg inline-block">Get Your Free Phone Today</a>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
+        <!-- Introduction -->
+        <section class="mb-10">
+          <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+            The landscape of government internet assistance has evolved significantly, with programs transitioning to better serve Americans who need affordable connectivity. When you get your <strong>{keyword}</strong> through {siteName}, you're tapping into current programs that provide both phone service and internet access at no cost to qualified households.
+          </p>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            Many people still search for the Emergency Broadband Benefit without realizing it transformed into something even better. Today's free internet programs offer more sustainable benefits and broader coverage, making it easier than ever to stay connected with family, access healthcare services, and find job opportunities.
+          </p>
+        </section>
+
+        <!-- What Was EBB -->
+        <section class="mb-10">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
+            <div class="w-8 h-8 rounded-full mr-3 flex items-center justify-center text-white" style="background-color: var(--color-primary)">
+              <span class="text-sm font-bold">1</span>
+            </div>
+            What Was the Emergency Broadband Benefit?
+          </h2>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            The Emergency Broadband Benefit launched in May 2021 as a temporary pandemic response, providing up to $50 monthly internet discounts and device subsidies. This program helped millions of families stay online during challenging times, but it was designed as short-term relief with limited funding.
+          </p>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            EBB participants received monthly credits on their internet bills and could purchase tablets or computers for just $10-$50. The program operated through participating internet providers nationwide, making high-speed internet accessible to households that previously couldn't afford it.
+          </p>
+        </section>
+
+        <!-- Transition to ACP -->
+        <section class="mb-10">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
+            <div class="w-8 h-8 rounded-full mr-3 flex items-center justify-center text-white" style="background-color: var(--color-primary)">
+              <span class="text-sm font-bold">2</span>
+            </div>
+            The Transition to Better Programs
+          </h2>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            In December 2021, the Emergency Broadband Benefit evolved into the Affordable Connectivity Program, offering more stable funding and expanded eligibility. Existing EBB participants automatically transitioned to ACP without losing their benefits, while new applicants gained access to improved services.
+          </p>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            The ACP provides up to $30 monthly for internet service (up to $75 on tribal lands) and one-time device discounts up to $100. This represents a more sustainable approach to digital equity, with dedicated federal funding designed to last for years rather than months.
+          </p>
+          <div class="bg-blue-50 border-l-4 p-4 mb-4" style="border-left-color: var(--color-primary)">
+            <p class="text-gray-700">
+              <strong>Important Update:</strong> While ACP ended in 2024 due to funding exhaustion, Lifeline continues providing free phone service with data. Many providers now bundle <strong>{keyword}</strong> packages that combine Lifeline benefits with their own subsidized internet offerings.
+            </p>
+          </div>
+        </section>
+
+        <!-- Current Options -->
+        <section class="mb-10">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
+            <div class="w-8 h-8 rounded-full mr-3 flex items-center justify-center text-white" style="background-color: var(--color-primary)">
+              <span class="text-sm font-bold">3</span>
+            </div>
+            Current Free Internet Options
+          </h2>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            Today's free internet landscape includes several pathways to connectivity. The Lifeline program continues providing free phone service with monthly data allowances, while many wireless carriers offer their own low-income internet programs with special pricing and flexible terms.
+          </p>
+          
+          <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 mb-3">Lifeline Program</h3>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-2">✓</span>
+                  Free monthly phone service
+                </li>
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-2">✓</span>
+                  Data allowances included
+                </li>

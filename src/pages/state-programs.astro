@@ -1,0 +1,155 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getSiteName, getKeyword, getDomain, getSiteURL } from '../lib/site-config';
+
+const siteName = getSiteName();
+const keyword = getKeyword();
+const domain = getDomain();
+const siteURL = getSiteURL();
+
+const title = 'Free Government Phone - Get Your Free Phone Today | QuickPhone Pro';
+const description = 'Get a free government phone in your state with free data and unlimited talk. Check eligibility for free phone programs available nationwide in 2025.';
+const canonicalURL = new URL('/state-programs', siteURL);
+
+const jsonLD = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": siteName
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": siteName,
+    "url": siteURL
+  },
+  "datePublished": "2025-12-09",
+  "dateModified": "2025-12-09",
+  "url": canonicalURL,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalURL
+  }
+};
+
+const faqJsonLD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I get a free government phone in my state?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Apply through approved providers in your state by showing proof of income or government assistance like SNAP, Medicaid, or housing aid. Each state has authorized carriers that handle applications."
+      }
+    },
+    {
+      "@type": "Question", 
+      "name": "What comes with my free phone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You get a smartphone, unlimited talk and text, plus monthly high-speed data. Most plans include 5GB or more data per month at no cost."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I keep my current phone number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you can port your existing number to your new free government phone service when you activate your device."
+      }
+    }
+  ]
+};
+---
+
+<Layout title={title} description={description} canonicalURL={canonicalURL.href}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLD)} />
+
+  <!-- Breadcrumb Navigation -->
+  <nav class="bg-gray-100 py-3" aria-label="Breadcrumb">
+    <div class="container mx-auto px-4">
+      <ol class="flex items-center space-x-2 text-sm">
+        <li><a href="/" class="text-[var(--color-primary)] hover:underline">Home</a></li>
+        <li class="text-gray-500">/</li>
+        <li class="text-gray-700" aria-current="page">State Programs</li>
+      </ol>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-4 py-8">
+    <!-- Hero Section -->
+    <header class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Free Government Phone</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">Get your free smartphone with unlimited talk, text, and data through state-approved programs available nationwide</p>
+      <div class="mt-8">
+        <a href="/apply" class="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-gray-900 font-bold py-3 px-6 rounded-xl shadow-lg mr-4">Check Your Eligibility</a>
+        <a href="/learn-more" class="border-2 border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white font-semibold py-3 px-6 rounded-xl">Learn More</a>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="grid lg:grid-cols-3 gap-8 mb-12">
+      <article class="lg:col-span-2 space-y-8">
+        
+        <!-- Introduction -->
+        <section>
+          <p class="text-lg text-gray-700 mb-6">Every state in America offers free phone programs to help families stay connected. When you qualify for a Free Government Phone, you get a modern smartphone with unlimited calling, texting, and high-speed data at zero cost to you.</p>
+          
+          <p class="text-gray-700 mb-6">QuickPhone Pro helps you navigate these programs and find the best free phone service in your area. The process takes just minutes, and approved applicants receive their phone within days of approval.</p>
+        </section>
+
+        <!-- How to Get Your Free Phone -->
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">How to Get Your Free Phone in Any State</h2>
+          
+          <div class="space-y-4">
+            <div class="flex items-start space-x-4">
+              <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm" style="background-color: var(--color-primary)">1</div>
+              <div>
+                <h3 class="font-semibold text-gray-900 mb-2">Check Your State's Requirements</h3>
+                <p class="text-gray-700">Each state has approved carriers offering Free Government Phone services. Requirements are similar nationwide - you need proof of low income or participation in assistance programs like SNAP, Medicaid, or housing assistance.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start space-x-4">
+              <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm" style="background-color: var(--color-primary)">2</div>
+              <div>
+                <h3 class="font-semibold text-gray-900 mb-2">Submit Your Application</h3>
+                <p class="text-gray-700">Apply online with your documentation. Most applications get approved within 24 hours if you meet the income guidelines or already receive government assistance.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start space-x-4">
+              <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm" style="background-color: var(--color-primary)">3</div>
+              <div>
+                <h3 class="font-semibold text-gray-900 mb-2">Receive Your Phone</h3>
+                <p class="text-gray-700">Your new smartphone ships to your address within 3-7 business days. Activate your service and start using unlimited talk, text, and data immediately.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- What You Get -->
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">What's Included with Your Free Phone</h2>
+          
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4" style="background-color: var(--color-primary)">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">Android Smartphone</h3>
+              <p class="text-gray-700">Brand new Android device with all essential apps, camera, and modern features you need for daily use.</p>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4" style="background-color: var(--color-primary)">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a

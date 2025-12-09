@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getSiteName, getKeyword, getDomain, getSiteURL } from '../lib/site-config';
+
+const siteName = getSiteName();
+const keyword = getKeyword();
+const domain = getDomain();
+const siteURL = getSiteURL();
+
+const title = `Free Government Phone - Top Free Phone Providers | ${siteName}`;
+const description = "Compare the best free government phone providers. Find out which companies offer free phones, unlimited data, and nationwide coverage through government assistance programs.";
+const canonicalURL = `${siteURL}/providers`;
+
+const jsonLD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": title,
+      "description": description,
+      "author": {
+        "@type": "Organization",
+        "name": siteName
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": siteName,
+        "url": siteURL
+      },
+      "datePublished": "2025-12-09",
+      "dateModified": "2025-12-09",
+      "url": canonicalURL,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": canonicalURL
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Which provider offers the best free government phone service?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The best provider depends on your location and needs. Safelink Wireless, Assurance Wireless, and Q Link Wireless are top choices offering nationwide coverage, unlimited talk and text, and generous data allowances."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do all providers offer the same phone models?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, phone models vary by provider. Some offer basic smartphones while others provide newer Android devices with better features and longer battery life."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I switch between free phone providers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, you can switch providers, but you may need to wait 12 months between transfers and complete a new application process with your chosen provider."
+          }
+        }
+      ]
+    }
+  ]
+};
+---
+
+<Layout title={title} description={description} canonical={canonicalURL}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
+  
+  <nav class="bg-gray-50 py-3 px-4 sm:px-6 lg:px-8" aria-label="Breadcrumb">
+    <div class="max-w-4xl mx-auto">
+      <ol class="flex items-center space-x-2 text-sm">
+        <li>
+          <a href="/" class="text-gray-500 hover:text-[var(--color-primary)]">Home</a>
+        </li>
+        <li class="text-gray-400">/</li>
+        <li class="text-gray-900 font-medium">Providers</li>
+      </ol>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <header class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6" style="color: var(--color-primary)">
+        Free Government Phone
+      </h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        Discover the top providers offering free phones and service through government assistance programs. Compare plans, coverage, and phone options to find your perfect match.
+      </p>
+    </header>
+
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold mb-6">Top Free Government Phone Providers</h2>
+      <p class="text-gray-700 mb-8 text-lg leading-relaxed">
+        Getting your <span style="color: var(--color-primary); font-weight: 600;">Free Government Phone</span> starts with choosing the right provider. Each company participating in the Lifeline program offers different benefits, phone models, and coverage areas. QuickPhone Pro has researched the leading providers to help you make the best choice for your needs.
+      </p>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-xl shadow-md border">
+          <div class="w-12 h-12 rounded-lg mb-4 flex items-center justify-center text-white font-bold text-xl" style="background-color: var(--color-primary)">
+            S
+          </div>
+          <h3 class="text-xl font-bold mb-3">Safelink Wireless</h3>
+          <ul class="space-y-2 text-gray-700">
+            <li>✓ 8GB monthly data</li>
+            <li>✓ Unlimited talk and text</li>
+            <li>✓ Nationwide coverage</li>
+            <li>✓ Android smartphones</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md border">
+          <div class="w-12 h-12 rounded-lg mb-4 flex items-center justify-center text-white font-bold text-xl" style="background-color: var(--color-primary)">
+            A
+          </div>
+          <h3 class="text-xl font-bold mb-3">Assurance Wireless</h3>
+          <ul class="space-y-2 text-gray-700">
+            <li>✓ 10GB monthly data</li>
+            <li>✓ Unlimited calling</li>
+            <li>✓ Virgin Mobile network</li>
+            <li>✓ Free phone upgrade options</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md border">
+          <div class="w-12 h-12 rounded-lg mb-4 flex items-center justify-center text-white font-bold text-xl" style="background-color: var(--color-primary)">
+            Q
+          </div>
+          <h3 class="text-xl font-bold mb-3">Q Link Wireless</h3>
+          <ul class="space-y-2 text-gray-700">
+            <li>✓ 15GB monthly data</li>
+            <li>✓ Unlimited everything</li>
+            <li>✓ T-Mobile network</li>
+            <li>✓ Latest smartphone models</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold mb-6">How to Choose Your Provider</h2>
+      <p class="text-gray-700 mb-6 text-lg leading-relaxed">
+        Selecting the best <span style="color: var(--color-primary); font-weight: 600;">Free Government Phone</span> provider requires considering several key factors. Your location plays a major role since coverage varies between providers. Check which networks have the strongest signal in your area before making your decision.
+      </p>
+
+      <div class="bg-gray-50 p-8 rounded-xl mb-8">
+        <h3 class="text-2xl font-bold mb-4">Key Selection Factors</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-bold mb-2" style="color: var(--color-primary)">Network Coverage</h4>
+            <p class="text-gray-700 mb-4">Check coverage maps for your home, work, and frequently visited areas. Some providers use Verizon, others use T-Mobile or AT&T networks.</p>
+            
+            <h4 class="font-bold mb-2" style="color: var(--color-primary)">Data Allowance</h4>
+            <p class="text-gray-700">Monthly data ranges from 4GB to 15GB. Consider your internet usage for social media, streaming, and web browsing.</p>
+          </div>
+          <div>
+            <h4 class="font-bold mb-2" style="color: var(--color-primary)">Phone Selection</h4>
+            <p class="text-gray-700 mb-4">Some providers offer basic smartphones while others provide newer models with better cameras and performance.</p>
+            
+            <h4 class="font-bold mb-2" style="color: var(--color-primary)">Additional Features</h4>
+            <p class="text-gray-700">Look for extras like international calling, mobile hotspot capability, and customer service availability.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold mb-6">Provider Comparison Guide</h2>
+      <p class="text-gray-700 mb-6 text-lg leading-relaxed">
+        When comparing options for your <span style="color: var(--color-primary); font-weight: 600;">Free Government Phone</span>, focus on what matters most to you. QuickPhone Pro recommends creating a priority list of your needs before choosing a provider.
+      </p>
+
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full bg-white rounded-xl shadow-md overflow-hidden">
+          <thead style="background-color: var(--color-primary)" class="text-white">
+            <tr>
+              <th class="px-

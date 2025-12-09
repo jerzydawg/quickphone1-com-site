@@ -1,0 +1,168 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getSiteName, getKeyword, getDomain, getSiteURL } from '../../lib/site-config';
+
+const siteName = getSiteName();
+const keyword = getKeyword();
+const domain = getDomain();
+const siteURL = getSiteURL();
+
+const title = `${keyword} by State - Find Local Programs | ${siteName}`;
+const description = `Find free government phone programs in your state. Discover local providers, application requirements, and qualify for free phones and data plans nationwide.`;
+
+// States data
+const states = [
+  'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
+  'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
+  'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
+  'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico',
+  'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
+  'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+];
+
+const jsonLD = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": `${keyword} by State`,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": siteName
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": siteName,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteURL}/logo.png`
+    }
+  },
+  "datePublished": "2025-12-09",
+  "dateModified": "2025-12-09",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `${siteURL}/states/`
+  }
+};
+
+const faqLD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are free government phones available in all states?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, the Lifeline program operates nationwide. However, each state may have different providers and specific requirements for eligibility and application processes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I find providers in my state?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use our state directory to find approved providers in your area. Each state page lists local companies offering free government phones and their specific services."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do state programs offer different phone models?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, available phone models vary by state and provider. Some states offer basic smartphones while others provide more advanced devices with larger data allowances."
+      }
+    }
+  ]
+};
+---
+
+<Layout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLD)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLD)}></script>
+
+  <!-- Breadcrumb -->
+  <nav class="bg-gray-50 py-3">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center space-x-2 text-sm">
+        <a href="/" class="text-[var(--color-primary)] hover:underline">Home</a>
+        <span class="text-gray-500">/</span>
+        <span class="text-gray-700">States</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mx-auto px-4 py-8">
+    <!-- Hero Section -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4 text-gray-800">Free Government Phone</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Find free phone programs in your state. Each state offers different providers and benefits - discover what's available in your area.
+      </p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto mb-12">
+      <p class="text-lg mb-6">
+        Every state participates in federal programs that provide free government phone service to qualifying residents. Through QuickPhone Pro, you can easily locate the best programs available in your specific state and connect with local providers who offer free smartphones, unlimited talk, text, and data plans.
+      </p>
+
+      <p class="mb-6">
+        State programs vary significantly in their offerings. Some states provide basic smartphones with essential features, while others offer advanced devices with high-speed internet access. The application process also differs by location - some states allow instant online enrollment, while others require documentation review that takes a few business days.
+      </p>
+
+      <p class="mb-6">
+        Your state determines which companies can provide free government phone services in your area. Major providers like Assurance Wireless, SafeLink, and Q Link operate in multiple states, but each location may have unique local providers offering competitive benefits. Finding the right provider in your state ensures you receive the maximum allowable minutes, texts, and data.
+      </p>
+
+      <div class="bg-blue-50 border-l-4 border-[var(--color-primary)] p-6 mb-8">
+        <h3 class="font-semibold mb-2 text-[var(--color-primary)]">Quick State Lookup</h3>
+        <p>Click on your state below to see available providers, application requirements, and program details specific to your location.</p>
+      </div>
+    </div>
+
+    <!-- States Grid -->
+    <div class="mb-12">
+      <h2 class="text-3xl font-bold mb-8 text-center">Find Your State's Free Phone Program</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-8">
+        {states.map((state) => (
+          <a 
+            href={`/states/${state.toLowerCase().replace(/\s+/g, '-')}/`}
+            class="border border-gray-300 rounded-lg p-4 text-center hover:border-[var(--color-primary)] hover:shadow-md transition-all duration-200 group"
+          >
+            <span class="font-medium text-gray-700 group-hover:text-[var(--color-primary)]">{state}</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="text-center">
+        <a href="/apply/" class="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-gray-900 font-bold py-3 px-6 rounded-xl shadow-lg inline-block">
+          Apply Now - Any State
+        </a>
+      </div>
+    </div>
+
+    <!-- How State Programs Work -->
+    <div class="max-w-4xl mx-auto mb-12">
+      <h2 class="text-3xl font-bold mb-8 text-center">How State Programs Work</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white border border-gray-200 rounded-lg p-6">
+          <div class="w-12 h-12 rounded-full mb-4 flex items-center justify-center" style="background-color: var(--color-primary)">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Local Provider Network</h3>
+          <p>Each state contracts with specific companies to deliver free government phone services. These providers must meet federal requirements while adapting to local needs and preferences.</p>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-lg p-6">
+          <div class="w-12 h-12 rounded-full mb-4 flex items-center justify-center" style="background-color: var(--color-primary)">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">State-Specific Benefits</h3>
+          <p>While federal guidelines set minimum standards,

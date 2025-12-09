@@ -1,0 +1,159 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getSiteName, getKeyword, getDomain, getSiteURL } from '../lib/site-config';
+
+const title = 'Free Government Phone - Lifeline Program | Apply Today';
+const description = 'Get a free government phone through the Lifeline program. Free monthly service, unlimited talk & text, plus data. Check if you qualify today - no credit check required.';
+const siteName = getSiteName();
+const domain = getDomain();
+const siteURL = getSiteURL();
+
+const jsonLD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Free Government Phone - Lifeline Program",
+      "description": description,
+      "author": {
+        "@type": "Organization",
+        "name": siteName
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": siteName,
+        "url": siteURL
+      },
+      "datePublished": "2025-12-09",
+      "dateModified": "2025-12-09",
+      "url": `${siteURL}/lifeline-program`,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `${siteURL}/lifeline-program`
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the Lifeline program?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Lifeline program is a federal assistance program that provides free phone service to qualifying low-income households. It offers a free smartphone with monthly service including talk, text, and data."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much data do I get with my free phone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most Lifeline providers offer 3-15GB of high-speed data per month, unlimited talk and text. Data amounts vary by provider and location."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I keep my current phone number?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, you can transfer your existing phone number to your new Lifeline service. This process is called number porting and is free."
+          }
+        }
+      ]
+    }
+  ]
+};
+---
+
+<Layout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
+  
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 py-4">
+    <div class="max-w-6xl mx-auto px-4">
+      <nav class="text-sm">
+        <ol class="list-none p-0 inline-flex">
+          <li class="flex items-center">
+            <a href="/" class="text-[var(--color-primary)] hover:underline">Home</a>
+          </li>
+          <li class="flex items-center">
+            <span class="mx-2 text-gray-500">/</span>
+            <span class="text-gray-700">Lifeline Program</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <article>
+      <!-- Header Section -->
+      <header class="text-center mb-12">
+        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Free Government Phone</h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Get connected with the federal Lifeline program. Receive a smartphone with free monthly service, unlimited talk and text, plus data - no cost to you.</p>
+        <div class="mt-8">
+          <a href="/apply" class="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-gray-900 font-bold py-3 px-6 rounded-xl shadow-lg mr-4">Check If You Qualify</a>
+          <a href="/providers" class="border-2 border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white font-semibold py-3 px-6 rounded-xl">Compare Providers</a>
+        </div>
+      </header>
+
+      <!-- What is Lifeline Section -->
+      <section class="mb-12">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">What is the Lifeline Program?</h2>
+          <p class="text-lg text-gray-700 mb-6">The Lifeline program helps millions of Americans stay connected by providing access to a Free Government Phone with monthly service. This federal program, managed by the FCC, ensures that low-income households can maintain essential communication services without financial hardship.</p>
+          
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Program Benefits</h3>
+              <ul class="space-y-3 text-gray-700">
+                <li class="flex items-start">
+                  <span class="bg-green-100 text-green-800 rounded-full p-1 mr-3 mt-0.5">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </span>
+                  Free smartphone device
+                </li>
+                <li class="flex items-start">
+                  <span class="bg-green-100 text-green-800 rounded-full p-1 mr-3 mt-0.5">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </span>
+                  Monthly service at no charge
+                </li>
+                <li class="flex items-start">
+                  <span class="bg-green-100 text-green-800 rounded-full p-1 mr-3 mt-0.5">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </span>
+                  No credit check required
+                </li>
+                <li class="flex items-start">
+                  <span class="bg-green-100 text-green-800 rounded-full p-1 mr-3 mt-0.5">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </span>
+                  Keep your existing number
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Service Features</h3>
+              <ul class="space-y-3 text-gray-700">
+                <li class="flex items-start">
+                  <span class="w-2 h-2 bg-[var(--color-primary)] rounded-full mr-3 mt-2.5"></span>
+                  Unlimited nationwide talk
+                </li>
+                <li class="flex items-start">
+                  <span class="w-2 h-2 bg-[var(--color-primary)] rounded-full mr-3 mt-2.5"></span>
+                  Unlimited text messaging
+                </li>
+                <li class="flex items-start">
+                  <span class="w-2 h-2 bg-[var(--color-primary)] rounded-full mr-3 mt-2.5"></span>
+                  High-speed mobile data
+                </li>
+                <li class

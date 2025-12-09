@@ -1,0 +1,162 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getSiteName, getKeyword, getDomain, getSiteURL } from '../lib/site-config';
+
+const siteName = getSiteName();
+const keyword = getKeyword();
+const domain = getDomain();
+const siteURL = getSiteURL();
+
+const title = "Free Government Phone - Do You Qualify? Check Now";
+const description = "Check if you qualify for a free government phone. Learn income requirements, eligible programs, and how to apply for your free phone and data plan instantly.";
+const canonicalURL = `${siteURL}/eligibility`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "url": canonicalURL,
+  "datePublished": "2025-12-09",
+  "dateModified": "2025-12-09",
+  "author": {
+    "@type": "Organization",
+    "name": siteName
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": siteName,
+    "url": siteURL
+  }
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What income level qualifies for a free government phone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You qualify if your household income is at or below 135% of the Federal Poverty Guidelines. For a single person, this means earning $20,385 or less per year in 2025."
+      }
+    },
+    {
+      "@type": "Question", 
+      "name": "Can I get a free phone if I'm on SNAP benefits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if you receive SNAP benefits, you automatically qualify for a free government phone through the Lifeline program, regardless of your income level."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to get approved?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most applications are processed within 7-10 business days. Once approved, you'll receive your free phone and service within 5-7 business days."
+      }
+    }
+  ]
+};
+---
+
+<Layout 
+  title={title} 
+  description={description} 
+  canonicalURL={canonicalURL}
+  jsonLd={[jsonLd, faqJsonLd]}
+>
+  <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <!-- Breadcrumb Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center space-x-2 py-4 text-sm">
+          <a href="/" class="text-[var(--color-primary)] hover:underline">Home</a>
+          <span class="text-gray-500">/</span>
+          <span class="text-gray-700">Eligibility</span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <!-- Hero Section -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          Free Government Phone
+        </h1>
+        <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          Discover if you qualify for a free smartphone with unlimited talk, text, and data. Check your eligibility instantly and get connected today.
+        </p>
+        <a href="/apply" class="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-gray-900 font-bold py-3 px-6 rounded-xl shadow-lg inline-block">
+          Check Your Eligibility Now
+        </a>
+      </div>
+
+      <!-- Main Content -->
+      <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+        <div class="prose max-w-none">
+          <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+            Getting a <strong>Free Government Phone</strong> is easier than you think. The Lifeline Assistance Program helps millions of Americans stay connected with free phones and monthly service. At QuickPhone Pro, we make checking your eligibility quick and straightforward.
+          </p>
+
+          <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center" style="color: var(--color-primary)">
+            <svg class="w-6 h-6 mr-3" style="color: var(--color-primary)" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            Income Requirements for Free Phone Service
+          </h2>
+          
+          <p class="text-gray-700 mb-4">
+            You can qualify for a <strong>Free Government Phone</strong> if your household income meets these guidelines for 2025:
+          </p>
+
+          <div class="bg-blue-50 rounded-lg p-6 mb-6">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <h3 class="font-semibold text-gray-900 mb-2">Household Size & Income Limits</h3>
+                <ul class="space-y-1 text-gray-700">
+                  <li><strong>1 Person:</strong> $20,385 or less</li>
+                  <li><strong>2 People:</strong> $27,465 or less</li>
+                  <li><strong>3 People:</strong> $34,545 or less</li>
+                  <li><strong>4 People:</strong> $41,625 or less</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-900 mb-2">Larger Households</h3>
+                <ul class="space-y-1 text-gray-700">
+                  <li><strong>5 People:</strong> $48,705 or less</li>
+                  <li><strong>6 People:</strong> $55,785 or less</li>
+                  <li><strong>7 People:</strong> $62,865 or less</li>
+                  <li><strong>8+ People:</strong> Add $7,080 per person</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="text-2xl font-bold text-gray-900 mb-4" style="color: var(--color-primary)">Qualify Through Government Programs</h2>
+          
+          <p class="text-gray-700 mb-4">
+            Even if your income is higher, you automatically qualify for your <strong>Free Government Phone</strong> if you participate in any of these programs:
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div class="bg-green-50 rounded-lg p-4">
+              <h3 class="font-semibold text-gray-900 mb-3">Federal Programs</h3>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  SNAP (Food Stamps)
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  Medicaid
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1
