@@ -1,162 +1,319 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getSiteName, getKeyword, getDomain, getSiteURL } from '../lib/site-config';
+import EligibilityHero from '../components/EligibilityHero.astro';
+import { getSiteURL, getSiteName, getDomain, getKeywordId } from '../lib/site-config';
+import { loadKeywordVariations } from '../lib/variations';
 
-const siteName = getSiteName();
-const keyword = getKeyword();
+const SITE_URL = getSiteURL();
+const SITE_NAME = getSiteName();
 const domain = getDomain();
-const siteURL = getSiteURL();
+const keywordId = getKeywordId();
 
-const title = "Free Government Phone - Do You Qualify? Check Now";
-const description = "Check if you qualify for a free government phone. Learn income requirements, eligible programs, and how to apply for your free phone and data plan instantly.";
-const canonicalURL = `${siteURL}/eligibility`;
+// Load keyword-specific variations with error handling
+let metaContent = { title: 'Eligibility Requirements', description: 'Check if you qualify' };
+let h1Text = { h1: 'Check Your Eligibility' };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": title,
-  "description": description,
-  "url": canonicalURL,
-  "datePublished": "2025-12-09",
-  "dateModified": "2025-12-09",
-  "author": {
-    "@type": "Organization",
-    "name": siteName
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": siteName,
-    "url": siteURL
+try {
+  const keywordModule = await loadKeywordVariations(keywordId);
+  const { getH1Variation, getMetaVariations } = keywordModule;
+  
+  const metaResult = getMetaVariations(SITE_NAME, domain, 'eligibility');
+  if (metaResult && metaResult.title) {
+    metaContent = metaResult;
   }
-};
+  
+  const h1Result = getH1Variation(domain, 'eligibility');
+  if (h1Result && h1Result.h1) {
+    h1Text = h1Result;
+  }
+} catch (e) {
+  console.error('Failed to load keyword variations for eligibility:', e);
+}
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What income level qualifies for a free government phone?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You qualify if your household income is at or below 135% of the Federal Poverty Guidelines. For a single person, this means earning $20,385 or less per year in 2025."
-      }
-    },
-    {
-      "@type": "Question", 
-      "name": "Can I get a free phone if I'm on SNAP benefits?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, if you receive SNAP benefits, you automatically qualify for a free government phone through the Lifeline program, regardless of your income level."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How long does it take to get approved?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Most applications are processed within 7-10 business days. Once approved, you'll receive your free phone and service within 5-7 business days."
-      }
-    }
-  ]
-};
+const title = metaContent.title;
+const description = metaContent.description;
+const canonical = `${SITE_URL}/eligibility`;
 ---
 
-<Layout 
-  title={title} 
-  description={description} 
-  canonicalURL={canonicalURL}
-  jsonLd={[jsonLd, faqJsonLd]}
->
-  <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-    <!-- Breadcrumb Navigation -->
-    <nav class="bg-white shadow-sm border-b">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center space-x-2 py-4 text-sm">
-          <a href="/" class="text-[var(--color-primary)] hover:underline">Home</a>
-          <span class="text-gray-500">/</span>
-          <span class="text-gray-700">Eligibility</span>
+<Layout title={title} description={description} canonical={canonical}>
+  <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-green-600 via-blue-600 to-purple-700 text-white py-20">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+          {h1Text.h1 || 'Check Your Eligibility'}
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+          Find out if you qualify for federal communication assistance programs in just 60 seconds. 
+          No personal information required for this quick check.
+        </p>
+        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 max-w-2xl mx-auto">
+          <p class="text-lg mb-4">Quick Eligibility Check</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+            <div class="flex items-center">
+              <span class="text-green-400 mr-2">✓</span>
+              <span>Income-based qualification</span>
+            </div>
+            <div class="flex items-center">
+              <span class="text-green-400 mr-2">✓</span>
+              <span>Government program participation</span>
+            </div>
+            <div class="flex items-center">
+              <span class="text-green-400 mr-2">✓</span>
+              <span>No credit check required</span>
+            </div>
+            <div class="flex items-center">
+              <span class="text-green-400 mr-2">✓</span>
+              <span>Available nationwide</span>
+            </div>
+          </div>
         </div>
       </div>
-    </nav>
+    </section>
 
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <!-- Hero Section -->
-      <div class="text-center mb-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-          Free Government Phone
-        </h1>
-        <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-          Discover if you qualify for a free smartphone with unlimited talk, text, and data. Check your eligibility instantly and get connected today.
-        </p>
-        <a href="/apply" class="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-gray-900 font-bold py-3 px-6 rounded-xl shadow-lg inline-block">
-          Check Your Eligibility Now
-        </a>
-      </div>
+    <!-- Eligibility Checker Component -->
+    <EligibilityHero />
 
-      <!-- Main Content -->
-      <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
-        <div class="prose max-w-none">
-          <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-            Getting a <strong>Free Government Phone</strong> is easier than you think. The Lifeline Assistance Program helps millions of Americans stay connected with free phones and monthly service. At QuickPhone Pro, we make checking your eligibility quick and straightforward.
-          </p>
+    <!-- Qualification Methods -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+          How to Qualify for Free Government Phone
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <!-- Income-Based Qualification -->
+          <div class="bg-white rounded-lg shadow-lg p-8">
+            <div class="text-blue-600 text-4xl mb-4">💰</div>
+            <h3 class="text-2xl font-bold mb-4">Income-Based Qualification</h3>
+            <p class="text-gray-600 mb-6">
+              Your household income must be at or below 135% of the Federal Poverty Guidelines.
+            </p>
+            <div class="bg-blue-50 rounded-lg p-4 mb-6">
+              <h4 class="font-semibold mb-2">2024 Income Limits:</h4>
+              <ul class="text-sm space-y-1">
+                <li>• 1 person: $19,683 per year</li>
+                <li>• 2 people: $26,622 per year</li>
+                <li>• 3 people: $33,561 per year</li>
+                <li>• 4 people: $40,500 per year</li>
+                <li>• Each additional person: +$6,939</li>
+              </ul>
+            </div>
+            <p class="text-sm text-gray-500">
+              *Income limits are updated annually and may vary by state
+            </p>
+          </div>
 
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center" style="color: var(--color-primary)">
-            <svg class="w-6 h-6 mr-3" style="color: var(--color-primary)" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-            </svg>
-            Income Requirements for Free Phone Service
-          </h2>
-          
-          <p class="text-gray-700 mb-4">
-            You can qualify for a <strong>Free Government Phone</strong> if your household income meets these guidelines for 2025:
-          </p>
-
-          <div class="bg-blue-50 rounded-lg p-6 mb-6">
-            <div class="grid md:grid-cols-2 gap-4">
-              <div>
-                <h3 class="font-semibold text-gray-900 mb-2">Household Size & Income Limits</h3>
-                <ul class="space-y-1 text-gray-700">
-                  <li><strong>1 Person:</strong> $20,385 or less</li>
-                  <li><strong>2 People:</strong> $27,465 or less</li>
-                  <li><strong>3 People:</strong> $34,545 or less</li>
-                  <li><strong>4 People:</strong> $41,625 or less</li>
-                </ul>
+          <!-- Program Participation -->
+          <div class="bg-white rounded-lg shadow-lg p-8">
+            <div class="text-green-600 text-4xl mb-4">🏛️</div>
+            <h3 class="text-2xl font-bold mb-4">Government Program Participation</h3>
+            <p class="text-gray-600 mb-6">
+              You automatically qualify if you or someone in your household participates in:
+            </p>
+            <div class="space-y-3">
+              <div class="flex items-center">
+                <span class="text-green-500 mr-3">✓</span>
+                <span>Medicaid</span>
               </div>
-              <div>
-                <h3 class="font-semibold text-gray-900 mb-2">Larger Households</h3>
-                <ul class="space-y-1 text-gray-700">
-                  <li><strong>5 People:</strong> $48,705 or less</li>
-                  <li><strong>6 People:</strong> $55,785 or less</li>
-                  <li><strong>7 People:</strong> $62,865 or less</li>
-                  <li><strong>8+ People:</strong> Add $7,080 per person</li>
-                </ul>
+              <div class="flex items-center">
+                <span class="text-green-500 mr-3">✓</span>
+                <span>SNAP (Food Stamps)</span>
+              </div>
+              <div class="flex items-center">
+                <span class="text-green-500 mr-3">✓</span>
+                <span>Supplemental Security Income (SSI)</span>
+              </div>
+              <div class="flex items-center">
+                <span class="text-green-500 mr-3">✓</span>
+                <span>Federal Public Housing Assistance</span>
+              </div>
+              <div class="flex items-center">
+                <span class="text-green-500 mr-3">✓</span>
+                <span>Veterans Pension & Survivors Benefit</span>
+              </div>
+              <div class="flex items-center">
+                <span class="text-green-500 mr-3">✓</span>
+                <span>Tribal Programs (TTANF, FDPIR, BIA)</span>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <h2 class="text-2xl font-bold text-gray-900 mb-4" style="color: var(--color-primary)">Qualify Through Government Programs</h2>
-          
-          <p class="text-gray-700 mb-4">
-            Even if your income is higher, you automatically qualify for your <strong>Free Government Phone</strong> if you participate in any of these programs:
-          </p>
+    <!-- Enhanced Benefits -->
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+          Enhanced Benefits for Tribal Communities
+        </h2>
+        <div class="bg-gradient-to-r from-purple-600 to-indigo-700 text-white rounded-lg p-8 max-w-4xl mx-auto">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-2xl font-bold mb-4">Tribal Lifeline Benefits</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="text-yellow-400 mr-3 mt-1">★</span>
+                  <span>Enhanced monthly discount: $34.25 (vs $9.25 standard)</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-yellow-400 mr-3 mt-1">★</span>
+                  <span>Available on tribal lands</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-yellow-400 mr-3 mt-1">★</span>
+                  <span>Can be combined with ACP benefits</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold mb-4">Qualifying Tribal Programs</h3>
+              <ul class="space-y-2 text-sm">
+                <li>• Tribal TANF (Temporary Assistance for Needy Families)</li>
+                <li>• Food Distribution Program on Indian Reservations (FDPIR)</li>
+                <li>• Bureau of Indian Affairs General Assistance</li>
+                <li>• Tribal Head Start (income-based)</li>
+                <li>• Tribal National School Lunch Program</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="grid md:grid-cols-2 gap-6 mb-6">
-            <div class="bg-green-50 rounded-lg p-4">
-              <h3 class="font-semibold text-gray-900 mb-3">Federal Programs</h3>
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-center">
-                  <svg class="w-4 h-4 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                  </svg>
-                  SNAP (Food Stamps)
-                </li>
-                <li class="flex items-center">
-                  <svg class="w-4 h-4 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                  </svg>
-                  Medicaid
-                </li>
-                <li class="flex items-center">
-                  <svg class="w-4 h-4 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1
+    <!-- Application Process -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+          Simple Application Process
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div class="text-center">
+            <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+              1
+            </div>
+            <h3 class="text-xl font-bold mb-3">Check Eligibility</h3>
+            <p class="text-gray-600">
+              Use our quick eligibility checker to see if you qualify for free phone service.
+            </p>
+          </div>
+          <div class="text-center">
+            <div class="bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+              2
+            </div>
+            <h3 class="text-xl font-bold mb-3">Choose Provider</h3>
+            <p class="text-gray-600">
+              Select from top providers with the best coverage and service in your area.
+            </p>
+          </div>
+          <div class="text-center">
+            <div class="bg-purple-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+              3
+            </div>
+            <h3 class="text-xl font-bold mb-3">Get Your Phone</h3>
+            <p class="text-gray-600">
+              Receive your free smartphone and start enjoying unlimited service.
+            </p>
+          </div>
+        </div>
+        <div class="text-center mt-12">
+          <a href="/apply" class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition duration-300">
+            Start Your Application
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+          Common Eligibility Questions
+        </h2>
+        <div class="max-w-3xl mx-auto space-y-6">
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-lg font-bold mb-3">Can I qualify if I'm already receiving other government benefits?</h3>
+            <p class="text-gray-600">
+              Yes! If you participate in programs like Medicaid, SNAP, or SSI, you automatically qualify for free phone service.
+            </p>
+          </div>
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-lg font-bold mb-3">What documents do I need to prove eligibility?</h3>
+            <p class="text-gray-600">
+              You'll need proof of income (pay stubs, tax returns) or documentation showing participation in qualifying government programs.
+            </p>
+          </div>
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-lg font-bold mb-3">Can I qualify if I live in a household with other people?</h3>
+            <p class="text-gray-600">
+              Yes, but the income limits apply to your entire household. All household members' income is counted together.
+            </p>
+          </div>
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-lg font-bold mb-3">How often do I need to recertify my eligibility?</h3>
+            <p class="text-gray-600">
+              You must recertify your eligibility annually to continue receiving free phone service benefits.
+            </p>
+          </div>
+        </div>
+        <div class="text-center mt-12">
+          <a href="/faq" class="text-blue-600 font-semibold hover:text-blue-800">
+            View All Frequently Asked Questions →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-blue-600 text-white py-16">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          Ready to Check Your Eligibility?
+        </h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto">
+          Take our quick eligibility checker to see if you qualify for free government phone service. 
+          It only takes 60 seconds and requires no personal information.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/apply" class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition duration-300 inline-block text-center no-underline">
+            Check Eligibility Now
+          </a>
+          <a href="/programs" class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition duration-300 inline-block text-center no-underline">
+            Learn About Programs
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Resources -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+          Related Resources
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <a href="/programs" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+            <div class="text-blue-600 text-3xl mb-3" aria-label="Document icon">📋</div>
+            <h3 class="font-bold mb-2 text-blue-600">All Programs</h3>
+            <p class="text-sm text-gray-600">Compare Lifeline, ACP, and other government assistance programs.</p>
+          </a>
+          <a href="/lifeline-program" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+            <div class="text-green-600 text-3xl mb-3" aria-label="Phone icon">📱</div>
+            <h3 class="font-bold mb-2 text-green-600">Lifeline Program</h3>
+            <p class="text-sm text-gray-600">Learn about the federal Lifeline program and its benefits.</p>
+          </a>
+          <a href="/acp-program" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+            <div class="text-purple-600 text-3xl mb-3" aria-label="Computer icon">💻</div>
+            <h3 class="font-bold mb-2 text-purple-600">ACP Program</h3>
+            <p class="text-sm text-gray-600">Discover the Affordable Connectivity Program benefits.</p>
+          </a>
+          <a href="/providers" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+            <div class="text-orange-600 text-3xl mb-3" aria-label="Building icon">🏢</div>
+            <h3 class="font-bold mb-2 text-orange-600">Providers</h3>
+            <p class="text-sm text-gray-600">Find approved providers offering free government phone service.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout> 
